@@ -1,0 +1,16 @@
+{
+    "name": "omnia/oalivechat",
+    "description": "chat between admin and users",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Omnia Ahmed",
+            "email": "oa66494@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Omnia\\Oalivechat\\": "src/"
+        }
+    }
+}
