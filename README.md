@@ -26,13 +26,13 @@ Laravel's #1 one-to-one chatting system package between admin and user, helps yo
 
 - Demo app - [Click Here](https://github.com/OmniaAhmed208/live_chat_demo).
 
-### Documentation
+## Documentation
 
-## 1- Installation 
+### 1- Installation 
 
 composer require omnia/oalivechat
 
-## 2- Require chat in your application
+### 2- Require chat in your application
 
 in composer installer should be installed this line
 
@@ -41,7 +41,7 @@ in composer installer should be installed this line
   "omnia/oalivechat": "^0.0.1" <br/>
 }
 
-## 3- App Config
+### 3- App Config
 
 - at config in app.php in 'providers' add this line <br/>
 "providers": { <br/>
@@ -49,12 +49,12 @@ in composer installer should be installed this line
   Omnia\Oalivechat\LiveChatServiceProvider::class, <br/>
 }
 
-## 4- publish Assets, css and js
+### 4- publish Assets, css and js
 
 - php artisan vendor:publish --tag=public --force <br/>
  it's should create 'liveChat/tools' in public dirrectry
 
-## 5- Migration to database
+### 5- Migration to database
 
 - create migration to update user table <br/>
 Ex: php artisan make:migration update_users --table=users
@@ -62,7 +62,7 @@ Ex: php artisan make:migration update_users --table=users
 - make migration for your database => php artisan migrate
 - make migration for package database => php artisan migrate --path=vendor/omnia/oalivechat/src/database/migrations
 
-## 6- Middleware for authentication admin chat
+### 6- Middleware for authentication admin chat
 
 - check the admin in database and make it's role = 'admin' not 'user'
 - make middleware => Ex: php artisan make:middleware CheckAdminRole
@@ -106,11 +106,11 @@ public function logout(Request $request) <br/>
   return redirect('/'); <br/>
 }
 
-### Note
+## Note
 
 - you must have directory for admin dashboard (any route) with name 'admin.index'
 
-### Usage
+## Usage
 
 - you can import admin chat by => @include('liveChat::pages.admin.chat') or route {{ route('admin.chat') }} in your view
 - User chat => @include('liveChat::pages.main.chat')
