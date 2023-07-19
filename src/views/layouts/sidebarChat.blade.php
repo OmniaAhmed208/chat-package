@@ -2,7 +2,7 @@
 <aside class="main-sidebar sidebar-dark-info elevation-4">
   <!-- Brand Logo -->
   <a href="index3.html" class="brand-link bg-info">
-    <img src="{{ asset('tools/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <img src="{{ asset('liveChat/tools/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
     <span class="brand-text font-weight-light">AdminLTE 3</span>
   </a>
 
@@ -11,7 +11,7 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center">
       <div class="image">
-        <img src="{{ asset('/tools/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+        <img src="{{ asset('/liveChat/tools/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
         <a href="#" class="d-block">Alexander Pierce</a>
@@ -112,7 +112,7 @@
                   <li class="nav-item">
                       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                           <div class="image">
-                              <img src="{{ asset('/tools/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+                              <img src="{{ asset('/liveChat/tools/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
                           </div>
                           <div class="info">
                               <a href="${finalUrl}" class="d-block">${user.name}</a>

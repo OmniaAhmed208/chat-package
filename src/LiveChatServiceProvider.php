@@ -19,6 +19,11 @@ class LiveChatServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(__DIR__.'/views','liveChat');
         // $this->loadMigrationsFrom(__DIR__.'/Database/Migrations');
+
+        //made copy from folder '/tools' which have assets and js & css to public => should made php artisan vendor:publish --tag=public --force
+        $this->publishes([
+            __DIR__.'/tools' => public_path('liveChat/tools'), 
+        ], 'public');
     }
 
     /**

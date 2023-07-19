@@ -6,9 +6,9 @@
     {{-- chat --}}
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="{{ asset('/tools/chat/css/chat.css') }}">
-    <link rel="stylesheet" href="{{ asset('/tools/chat/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('/tools/chat/css/typing.css') }}">
+    <link rel="stylesheet" href="{{ asset('/liveChat/tools/chat/css/chat.css') }}">
+    <link rel="stylesheet" href="{{ asset('/liveChat/tools/chat/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('/liveChat/tools/chat/css/typing.css') }}">
 </head>
 <body>
     {{-- @yield('chat') --}}
@@ -24,9 +24,9 @@
                 $admin = Omnia\Oalivechat\Models\User::where('role', 'admin')->first();
             @endphp
 
-            <div class="chatbox__header p-3 py-0">
+            <div class="chatbox__header py-0">
                 <div class="chatbox__image--header">
-                    <img src="{{ asset('/tools/dist/img/user2-160x160.jpg') }}" class="img-fluid" alt="image">
+                    <img src="{{ asset('/liveChat/tools/dist/img/user2-160x160.jpg') }}" class="img-fluid" alt="image">
                 </div>
                 <div class="chatbox__content--header pt-3">
                     <h4 class="chatbox__heading--header">E-volve</h4>
@@ -70,7 +70,7 @@
                     @else
                         <a href="{{ route('login') }}">
                             <div class="chatbox__button">
-                                <img src="{{ asset('/tools/chat/images/icons/chatbox-icon.svg') }}" alt="">
+                                <img src="{{ asset('/liveChat/tools/chat/images/icons/chatbox-icon.svg') }}" alt="">
                             </div>
                         </a>
                     @endauth
@@ -82,7 +82,7 @@
                     <div class="content text-white d-flex align-items-center"></div><br>
                     <div class="chatbox__footer p-0 m-0 bg-transparent shadow-none d-flex">
                         <div class="file position-absolute">
-                            <input type="file" class="position-absolute p-0 opacity-0" name="file" accept="image/*, .pdf, .doc, .txt" onchange="getImagePreview(event)">
+                            <input type="file" class="position-absolute p-0 opacity-0" style="opacity:0" name="file" accept="image/*, .pdf, .doc, .txt" onchange="getImagePreview(event)">
                             <i class="fa-solid fa-paperclip px-2"></i>
                         </div>
                         <input type="text" placeholder="Write a message..." name="msg" id="msg">
@@ -96,7 +96,7 @@
             <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
                 @auth
                     <div class="chatbox__button position-relative" id="chatbox__button">
-                        {{-- <img src="{{ asset('/tools/chat/images/chat.png') }}" style="width:80px" alt=""> --}}
+                        {{-- <img src="{{ asset('/liveChat/tools/chat/images/chat.png') }}" style="width:80px" alt=""> --}}
                         @if ($admin->status == 'online')
                             <i class="fa fa-comments"></i>
                             <span class="position-absolute">live</span>
@@ -120,8 +120,8 @@
         @endif
         {{-- <a href="{{ route('test') }}">ggg</a> --}}
     </div>
-    {{-- <script src="{{ asset('/tools/chat/js/Chat.js') }}"></script> --}}
-    <script src="{{ asset('/tools/chat/js/appChat.js') }}"></script>
+    {{-- <script src="{{ asset('/liveChat/tools/chat/js/Chat.js') }}"></script> --}}
+    <script src="{{ asset('/liveChat/tools/chat/js/appChat.js') }}"></script>
     
     @auth
     <script>

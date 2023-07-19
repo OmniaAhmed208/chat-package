@@ -7,7 +7,7 @@
     <div class="chat mt-5 mb-0">
         <div class="chatbox__header bg-info">
             <div class="chatbox__image--header">
-                <img src="{{ asset('/tools/dist/img/user2-160x160.jpg') }}" alt="image">
+                <img src="{{ asset('/liveChat/tools/dist/img/user2-160x160.jpg') }}" alt="image">
             </div>
             <div class="chatbox__content--header">
                 <h4 class="chatbox__heading--header">Choose person to chat</h4>
@@ -27,7 +27,7 @@
                   {{-- @dd(Auth::user()) --}}
                 </div>
                 <div class="col-6">
-                  <img src="{{ asset('/tools/chat/images/chatPage.png') }}" class="img-fluid" alt="">
+                  <img src="{{ asset('/liveChat/tools/chat/images/chatPage.png') }}" class="img-fluid" alt="">
                 </div>
               </div>
             </div>

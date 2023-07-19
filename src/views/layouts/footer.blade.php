@@ -16,39 +16,39 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="{{ asset('tools/plugins/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('liveChat/tools/plugins/jquery/jquery.min.js') }}"></script>
 <!-- jQuery UI 1.11.4 -->
-<script src="{{ asset('tools/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('liveChat/tools/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
-<script src="{{ asset('tools/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('liveChat/tools/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- ChartJS -->
-<script src="{{ asset('tools/plugins/chart.js/Chart.min.js') }}"></script>
+<script src="{{ asset('liveChat/tools/plugins/chart.js/Chart.min.js') }}"></script>
 <!-- Sparkline -->
-<script src="{{ asset('tools/plugins/sparklines/sparkline.js') }}"></script>
+<script src="{{ asset('liveChat/tools/plugins/sparklines/sparkline.js') }}"></script>
 <!-- JQVMap -->
-<script src="{{ asset('tools/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
-<script src="{{ asset('tools/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
+<script src="{{ asset('liveChat/tools/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
+<script src="{{ asset('liveChat/tools/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
 <!-- jQuery Knob Chart -->
-<script src="{{ asset('tools/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
+<script src="{{ asset('liveChat/tools/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
 <!-- daterangepicker -->
-<script src="{{ asset('tools/plugins/moment/moment.min.js') }}"></script>
-<script src="{{ asset('tools/plugins/daterangepicker/daterangepicker.js') }}"></script>
+<script src="{{ asset('liveChat/tools/plugins/moment/moment.min.js') }}"></script>
+<script src="{{ asset('liveChat/tools/plugins/daterangepicker/daterangepicker.js') }}"></script>
 <!-- Tempusdominus Bootstrap 4 -->
-<script src="{{ asset('tools/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+<script src="{{ asset('liveChat/tools/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 <!-- Summernote -->
-<script src="{{ asset('tools/plugins/summernote/summernote-bs4.min.js') }}"></script>
+<script src="{{ asset('liveChat/tools/plugins/summernote/summernote-bs4.min.js') }}"></script>
 <!-- overlayScrollbars -->
-<script src="{{ asset('tools/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+<script src="{{ asset('liveChat/tools/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 <!-- AdminLTE App -->
-<script src="{{ asset('tools/dist/js/adminlte.js') }}"></script>
+<script src="{{ asset('liveChat/tools/dist/js/adminlte.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{ asset('tools/dist/js/demo.js') }}"></script>
+<script src="{{ asset('liveChat/tools/dist/js/demo.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ asset('tools/dist/js/pages/dashboard.js') }}"></script>
+<script src="{{ asset('liveChat/tools/dist/js/pages/dashboard.js') }}"></script>
 
 
 <script>
