@@ -59,10 +59,10 @@ config in app.php in 'providers' add this line => Omnia\Oalivechat\LiveChatServi
 - check the admin in database and make it's role = 'admin' not 'user'
 - make middleware => Ex: php artisan make:middleware CheckAdminRole
 - put this code inside it => 
-- if (Auth::check()) {
-    view()->share('loggedInUser', Auth::user());
-    view()->share('adminRole', Auth::user()->role === 'admin');
-  }
+- if (Auth::check()) { <br/>
+    view()->share('loggedInUser', Auth::user()); <br/>
+    view()->share('adminRole', Auth::user()->role === 'admin'); <br/>
+  } <br/>
   return $next($request);
 
 - add it to kernel.php in $middlewareGroups in web => \App\Http\Middleware\CheckAdminRole::class,
