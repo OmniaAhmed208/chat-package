@@ -2,8 +2,8 @@
 
 namespace Omnia\Oalivechat\Controllers;
 
-use App\Models\User;
-use App\Models\Messages;
+use Omnia\Oalivechat\Models\User;
+use Omnia\Oalivechat\Models\Messages;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;

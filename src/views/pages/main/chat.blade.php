@@ -21,7 +21,7 @@
             @endauth
 
             @php
-                $admin =  App\Models\User::where('role', 'admin')->first();
+                $admin = Omnia\Oalivechat\Models\User::where('role', 'admin')->first();
             @endphp
 
             <div class="chatbox__header p-3 py-0">
@@ -42,14 +42,14 @@
                     @auth
 
                         @php
-                            $dataCout = App\Models\Messages::count();
+                            $dataCout = Omnia\Oalivechat\Models\Messages::count();
                         @endphp
 
                         @if ($dataCout == 0)
                             <div class="" id="No_msgs"></div>
                         @else
                             @php
-                                $data = App\Models\Messages::all();
+                                $data = Omnia\Oalivechat\Models\Messages::all();
                             @endphp
 
                             @foreach ($data as $item)

@@ -19,7 +19,7 @@
         <div class="chatbox__messages" id="msgContainer">
             <div style="word-break: break-word;">
                 @php
-                    $data = App\Models\Messages::all();
+                    $data = Omnia\Oalivechat\Models\Messages::all();
                 @endphp
 
                 @foreach ($data as $item)
