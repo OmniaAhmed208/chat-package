@@ -30,7 +30,7 @@
                 </div>
                 <div class="chatbox__content--header pt-3">
                     <h4 class="chatbox__heading--header">E-volve</h4>
-                    @if ($admin->status == 'online')
+                    @if ($admin && $admin->status == 'online')
                         <p class="chatbox__description--header">Online</p>
                     @else
                         <p class="chatbox__description--header">Offline</p>
@@ -97,7 +97,7 @@
                 @auth
                     <div class="chatbox__button position-relative" id="chatbox__button">
                         {{-- <img src="{{ asset('/liveChat/tools/chat/images/chat.png') }}" style="width:80px" alt=""> --}}
-                        @if ($admin->status == 'online')
+                        @if ($admin && $admin->status == 'online')
                             <i class="fa fa-comments"></i>
                             <span class="position-absolute">live</span>
                         @else
@@ -107,7 +107,7 @@
                 @else
                     <a href="{{ route('login') }}">
                         <div class="chatbox__button">
-                            @if ($admin->status == 'online')
+                            @if ($admin && $admin->status == 'online')
                                 <i class="fa fa-comments"></i>
                                 <span class="position-absolute">live</span>
                             @else
