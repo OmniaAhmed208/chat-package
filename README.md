@@ -56,11 +56,13 @@ in composer installer should be installed this line
 
 ### 5- Migration to database
 
-- create migration to update user table <br/>
-Ex: php artisan make:migration update_users --table=users
-
 - make migration for your database => php artisan migrate
 - make migration for package database => php artisan migrate --path=vendor/omnia/oalivechat/src/database/migrations
+- create migration to update user table <br/>
+Ex: php artisan make:migration update_users --table=users <br/>
+and inside it add 2 these columns: <br/>
+$table->string('role')->default('user'); </br>
+$table->string('status')->default('offline');
 
 ### 6- Middleware for authentication admin chat
 
