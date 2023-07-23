@@ -146,3 +146,14 @@
 .update-messengerFont span.active{
   font-weight: bold;
 }
+
+.chatbox__messages::-webkit-scrollbar {
+    width: 0.5em;
+    height: 0em;
+    background-color: #e3e3e3;
+}
+
+.chatbox__messages::-webkit-scrollbar-thumb {
+    background-color: #9b9b9b;
+    border-radius: 4px;
+}

@@ -54,27 +54,26 @@ composer require omnia/oalivechat
 
 - make migration for your database => php artisan migrate
 - make migration for package database => php artisan migrate --path=vendor/omnia/oalivechat/src/database/migrations
-- Additionally, create a migration to update the user table. For example:  <br/>
- php artisan make:migration update_users --table=users 
-- Inside the created migration file, add the following columns and then run `php artisan migrate`: <br/>
-$table->string('role')->default('user'); </br>
-$table->string('status')->default('offline');
 
 ### 5- Middleware for authentication admin chat
 
 - First, make sure to check the admin in the database and set its role to 'admin', not 'user'.
 - Create a middleware for checking the admin role: php artisan make:middleware CheckAdminRole 
 - Add the following code to the handle method inside the middleware: <br/>
+use Illuminate\Http\Request; <br/>
 use Illuminate\Support\Facades\Auth; <br/>
 
-if (Auth::check()) { <br/>
-  view()->share('loggedInUser', Auth::user()); <br/>
-  view()->share('adminRole', Auth::user()->role === 'admin'); <br/>
-} <br/>
+public function handle(Request $request, Closure $next): Response <br/>
+{ <br/>
+  if (Auth::check()) { <br/>
+    view()->share('loggedInUser', Auth::user()); <br/>
+    view()->share('adminRole', Auth::user()->role === 'admin'); <br/>
+  } <br/>
 
-return $next($request);
+  return $next($request); <br/>
+}
 
-- Then, register the middleware in app/Http/Kernel.php:  <br/>
+- Then, add the middleware in app/Http/Kernel.php:  <br/>
 protected $middlewareGroups = [ <br/>
   'web' => [ <br/>
     // ... <br/>
@@ -85,15 +84,19 @@ protected $middlewareGroups = [ <br/>
 - You should also have an Admin middleware. Create it using: <br/>
  php artisan make:middleware Admin
 - Add the following code to the handle method inside the middleware:<br/>
+use Illuminate\Http\Request; <br/>
 use Illuminate\Support\Facades\Auth; <br/>
 
-if (Auth::check() && Auth::user()->role === 'admin') { <br/>
-  return $next($request); <br/>
-} <br/>
+public function handle(Request $request, Closure $next): Response <br/>
+{ <br/>
+  if (Auth::check() && Auth::user()->role === 'admin') { <br/>
+    return $next($request); <br/>
+  } <br/>
 
-return redirect('/');
+  return redirect('/'); <br/>
+}
 
-- Register the middleware aliases in app/Http/Kernel.php: <br/>
+- add the middleware aliases in app/Http/Kernel.php: <br/>
 protected $middlewareAliases = [ <br/>
   // ... <br/>
   'admin' => \App\Http\Middleware\Admin::class, <br/>
@@ -104,8 +107,10 @@ protected $middlewareAliases = [ <br/>
 if you want this step: you should have laravel Authentication to get loginController file.
 
 - code:<br/>
+use Illuminate\Http\Request; <br/>
 use Illuminate\Support\Facades\Auth; <br/>
 use App\Models\User; <br/>
+
 public function authenticated(Request $request, $user) <br/>
 {<br/>
     $user->status = 'online';<br/>
