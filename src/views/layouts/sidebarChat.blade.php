@@ -22,8 +22,20 @@
     <!-- Sidebar Menu -->
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column nav-flat" data-widget="treeview" role="menu" data-accordion="false">
-        <!-- Add icons to the links using the .nav-icon class
-             with font-awesome or any other icon font library -->
+        <li class="nav-item menu-open">
+          <a href="#" class="nav-link bg-transparent">
+
+            <form class="form-group" action="{{ route('updateStatus', Auth::user()->id) }}"  method="POST" id="status-form">
+              @csrf
+              @method('put')
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customSwitch1"  name="status" {{ Auth::user()->status == 'online' ? 'checked' : '' }} onchange="this.form.submit()">
+                <label class="custom-control-label" for="customSwitch1">Status</label>
+              </div>
+            </form>
+          </a>
+        </li>
+
         <li class="nav-item menu-open">
           <a href="{{ route('admin.index') }}" class="nav-link active">
             <i class="nav-icon fas fa-tachometer-alt"></i>

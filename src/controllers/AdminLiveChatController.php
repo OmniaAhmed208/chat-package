@@ -133,4 +133,17 @@ class AdminLiveChatController extends Controller
         }
     }
 
+    public function updateStatus(Request $request,$id)
+    {
+        $user = User::findOrFail($id);
+
+        if($request->status == 'on'){
+            $user->update(['status' => 'online']);
+        }
+        else{
+            $user->update(['status' => 'offline']);
+        }
+
+        return redirect()->back();
+    }
 }   

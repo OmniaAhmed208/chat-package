@@ -25,6 +25,8 @@ Route::group(['middleware' => 'web'], function ()
     Route::get('/getChat/{id}', [AdminLiveChatController::class, 'getChat'])->name('getChatAdmin');
 
     Route::get('/fetchNewMessages', [AdminLiveChatController::class, 'fetchNewMessages'])->name('fetchNewMessages');
+
+    Route::put('/updateStatus/{id}', [AdminLiveChatController::class, 'updateStatus'])->name('updateStatus');
 });
 
 

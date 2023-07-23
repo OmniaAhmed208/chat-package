@@ -164,8 +164,11 @@
         xhr.onload = function() {
             if (xhr.status === 200) {
                 var response = xhr.responseText;
-
-                var messages = JSON.parse(response);
+                var responseData = JSON.parse(response);
+                
+                var messages = responseData.data;
+                var status = responseData.status;
+                // var messages = JSON.parse(response);
                 // console.log(messages)
 
                 var msgContainer = document.querySelector('#msgContainer div');
@@ -215,6 +218,20 @@
                 });
 
                 msgContainer.innerHTML = html;
+
+                var statusDiv = document.querySelector('#chatbox__button');
+                var statusinLogin = document.querySelector('#toBeLogin');
+                var htmlStatus = '';
+                
+                if(status == 'online' && !isStatusSpanCreated){
+                    htmlStatus += `<span class="position-absolute">live</span>`;
+                    statusDiv.innerHTML += htmlStatus;
+                    isStatusSpanCreated = true;
+                }
+                else if (status === 'offline' && isStatusSpanCreated) {
+                    statusDiv.querySelector('span').remove();
+                    isStatusSpanCreated = false; 
+                }
                 
             } else {
                 console.log('Error: ' + xhr.status);

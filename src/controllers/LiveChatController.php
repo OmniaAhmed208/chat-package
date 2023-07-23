@@ -65,7 +65,14 @@ class LiveChatController extends Controller
             return $message;
         });
 
-        return response()->json($data);
+        $status = User::where('role', 'admin')->first()->status;
+
+        return response()->json([
+            'data' => $data,
+            'status' => $status,
+        ]);
+        
+        // return response()->json($data);
         // return $data;
     }
 
