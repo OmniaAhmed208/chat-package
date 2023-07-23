@@ -46,7 +46,7 @@
 <!-- AdminLTE App -->
 <script src="{{ asset('liveChat/tools/dist/js/adminlte.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{ asset('liveChat/tools/dist/js/demo.js') }}"></script>
+{{-- <script src="{{ asset('liveChat/tools/dist/js/demo.js') }}"></script> --}}
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('liveChat/tools/dist/js/pages/dashboard.js') }}"></script>
 

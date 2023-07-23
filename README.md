@@ -48,7 +48,7 @@ composer require omnia/oalivechat
 - To publish the package's assets, CSS, and JS, run the following command:
 - php artisan vendor:publish --tag=public --force <br/>
  This will create a 'liveChat/tools' directory in the public directory. <br/>
-- If you want to change the chat color, you can do so in public/liveChat/tools/chat/final.css.
+- If you want to change the user chat color and position, you can do so in public/liveChat/tools/chat/css/final.css.
 
 ### 4- Migration to database
 
@@ -94,7 +94,7 @@ if (Auth::check() && Auth::user()->role === 'admin') { <br/>
 return redirect('/');
 
 - Register the middleware aliases in app/Http/Kernel.php: <br/>
-protected $routeMiddleware = [ <br/>
+protected $middlewareAliases = [ <br/>
   // ... <br/>
   'admin' => \App\Http\Middleware\Admin::class, <br/>
   'adminRole' => \App\Http\Middleware\CheckAdminRole::class, <br/>
