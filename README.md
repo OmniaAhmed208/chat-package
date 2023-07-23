@@ -17,7 +17,7 @@ Laravel's #1 one-to-one chatting system package between admin and user, helps yo
 - Real-time contact list updates.
 - Upload attachments (Photo/File).
 - Responsive design with all devices.
-- chat customization : chat color and fontsize.
+- Chat customization: chat color and font size.
   with simple and wonderful UI design.
 
 ...and much more you have to discover it yourself.
@@ -30,66 +30,83 @@ Laravel's #1 one-to-one chatting system package between admin and user, helps yo
 
 ### 1- Installation 
 
+Run the following command to install the package:<br/>
+
 composer require omnia/oalivechat
 
-### 2- Require chat in your application
+### 2- App Config
 
-in composer installer should be installed this line
+- In the config/app.php file, add the following line to the 'providers' array: <br/>
 
-"require": { <br/>
-  ... <br/>
-  "omnia/oalivechat": "^0.0.1" <br/>
-}
-
-### 3- App Config
-
-- at config in app.php in 'providers' add this line <br/>
 "providers": { <br/>
   ... <br/>
   Omnia\Oalivechat\LiveChatServiceProvider::class, <br/>
 }
 
-### 4- publish Assets, css and js
+### 3- publish Assets, css and js
 
+- To publish the package's assets, CSS, and JS, run the following command:
 - php artisan vendor:publish --tag=public --force <br/>
- it's should create 'liveChat/tools' in public dirrectry
+ This will create a 'liveChat/tools' directory in the public directory. <br/>
+- If you want to change the chat color, you can do so in public/liveChat/tools/chat/final.css.
 
-### 5- Migration to database
+### 4- Migration to database
 
 - make migration for your database => php artisan migrate
 - make migration for package database => php artisan migrate --path=vendor/omnia/oalivechat/src/database/migrations
-- create migration to update user table <br/>
-Ex: php artisan make:migration update_users --table=users <br/>
-and inside it add 2 these columns: <br/>
+- Additionally, create a migration to update the user table. For example:  <br/>
+ php artisan make:migration update_users --table=users 
+- Inside the created migration file, add the following columns and then run `php artisan migrate`: <br/>
 $table->string('role')->default('user'); </br>
 $table->string('status')->default('offline');
 
-### 6- Middleware for authentication admin chat
+### 5- Middleware for authentication admin chat
 
-- check the admin in database and make it's role = 'admin' not 'user'
-- make middleware => Ex: php artisan make:middleware CheckAdminRole
-- put this code inside it <br/>
+- First, make sure to check the admin in the database and set its role to 'admin', not 'user'.
+- Create a middleware for checking the admin role: php artisan make:middleware CheckAdminRole 
+- Add the following code to the handle method inside the middleware: <br/>
+use Illuminate\Support\Facades\Auth; <br/>
+
 if (Auth::check()) { <br/>
   view()->share('loggedInUser', Auth::user()); <br/>
-  view()->share('adminRole', Auth::user()->role === 'admin');<br/>
-}<br/>
+  view()->share('adminRole', Auth::user()->role === 'admin'); <br/>
+} <br/>
+
 return $next($request);
 
-- add it to kernel.php in $middlewareGroups in 'web' <br/>
- \App\Http\Middleware\CheckAdminRole::class,
+- Then, register the middleware in app/Http/Kernel.php:  <br/>
+protected $middlewareGroups = [ <br/>
+  'web' => [ <br/>
+    // ... <br/>
+    \App\Http\Middleware\CheckAdminRole::class, <br/>
+  ], <br/>
+];
 
-- and you should also have Admin Middleware <br/>
+- You should also have an Admin middleware. Create it using: <br/>
+ php artisan make:middleware Admin
+- Add the following code to the handle method inside the middleware:<br/>
+use Illuminate\Support\Facades\Auth; <br/>
+
 if (Auth::check() && Auth::user()->role === 'admin') { <br/>
   return $next($request); <br/>
-}<br/>
+} <br/>
+
 return redirect('/');
 
-- add it to kernel.php in $middlewareAliases <br/>
-'admin' => \App\Http\Middleware\AdminMiddleware::class, <br/>
-'adminRole' => \App\Http\Middleware\CheckAdminRole::class,
+- Register the middleware aliases in app/Http/Kernel.php: <br/>
+protected $routeMiddleware = [ <br/>
+  // ... <br/>
+  'admin' => \App\Http\Middleware\Admin::class, <br/>
+  'adminRole' => \App\Http\Middleware\CheckAdminRole::class, <br/>
+]; 
 
-- update loginController to this: <br/>
--public function authenticated(Request $request, $user)
+- Optionally, to show the admin's status in the user chat, make the following updates to the LoginController:
+if you want this step: you should have laravel Authentication to get loginController file.
+
+- code:<br/>
+use Illuminate\Support\Facades\Auth; <br/>
+use App\Models\User; <br/>
+public function authenticated(Request $request, $user) <br/>
 {<br/>
     $user->status = 'online';<br/>
     $user->save();<br/>
@@ -110,12 +127,14 @@ public function logout(Request $request) <br/>
 
 ## Note
 
-- you must have directory for admin dashboard (any route) with name 'admin.index'
+- You must have a directory for the admin dashboard (any route) with the name 'admin.index'.
 
 ## Usage
 
-- you can import admin chat by => @include('liveChat::pages.admin.chat') or route {{ route('admin.chat') }} in your view
-- User chat => <br/>
+- To import admin chat, create a link anywhere in your view, for example: <br/>
+<a href="{{ route('admin.chat') }}">Messages</a> <br/>
+
+- For user chat, add the following code to a view that appears on all pages (e.g., footer):<br/>
   @auth <br/>
     @if (Auth::user()->role != 'admin') <br/>
         @include('liveChat::pages.main.chat') <br/>

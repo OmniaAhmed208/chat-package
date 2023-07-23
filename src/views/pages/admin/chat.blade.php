@@ -7,7 +7,7 @@
     <div class="chat mt-5 mb-0">
         <div class="chatbox__header bg-info">
             <div class="chatbox__image--header">
-                <img src="{{ asset('/liveChat/tools/dist/img/user2-160x160.jpg') }}" alt="image">
+                <img src="{{ asset('liveChat/tools/chat/logo/user.png') }}" alt="image">
             </div>
             <div class="chatbox__content--header">
                 <h4 class="chatbox__heading--header">Choose person to chat</h4>

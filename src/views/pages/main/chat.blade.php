@@ -7,8 +7,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ asset('/liveChat/tools/chat/css/chat.css') }}">
-    <link rel="stylesheet" href="{{ asset('/liveChat/tools/chat/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('/liveChat/tools/chat/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('/liveChat/tools/chat/css/typing.css') }}">
+    <link rel="stylesheet" href="{{ asset('/liveChat/tools/chat/css/final.css') }}">
 </head>
 <body>
     {{-- @yield('chat') --}}
@@ -24,17 +25,12 @@
                 $admin = Omnia\Oalivechat\Models\User::where('role', 'admin')->first();
             @endphp
 
-            <div class="chatbox__header py-0">
+            <div class="chatbox__header py-2">
                 <div class="chatbox__image--header">
-                    <img src="{{ asset('/liveChat/tools/dist/img/user2-160x160.jpg') }}" class="img-fluid" alt="image">
+                    <img src="{{ asset('/liveChat/tools/chat/logo/admin.png') }}" class="img-fluid" alt="image">
                 </div>
                 <div class="chatbox__content--header pt-3">
-                    <h4 class="chatbox__heading--header">E-volve</h4>
-                    @if ($admin && $admin->status == 'online')
-                        <p class="chatbox__description--header">Online</p>
-                    @else
-                        <p class="chatbox__description--header">Offline</p>
-                    @endif
+                    <h4 class="chatbox__heading--header">E-Volve</h4>
                 </div>
             </div>
             <div class="chatbox__messages" id="msgContainer">

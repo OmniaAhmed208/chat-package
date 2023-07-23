@@ -1,0 +1,37 @@
+*, html {
+    --headerGradient: linear-gradient(93.12deg, #1b7b98 0.52%, #1da4e7 100%);
+    --footerGradient: linear-gradient(268.91deg, #1c98d1 -2.14%, #1b7b98 99.69%);
+    --msg-color: #1b7b98;
+}
+
+.chatbox {
+    bottom: 30px;
+    left: 30px;
+}
+
+.chatbox__button {
+    bottom:25px;
+    right:60px;
+}
+
+.chatbox__button i {
+    font-size: 45px;
+    color: #1b7b98;
+}
+
+.chatbox__header {
+    background: var(--headerGradient);
+}
+
+.messages__item--operator {
+    background: var(--msg-color);
+}
+
+.chatbox__header {
+    background: var(--headerGradient);
+}
+
+.chatbox__footer {
+    background: var(--footerGradient);
+}
+
