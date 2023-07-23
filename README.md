@@ -132,7 +132,7 @@ public function logout(Request $request) <br/>
 ## Usage
 
 - To import admin chat, create a link anywhere in your view, for example: <br/>
-<a href="{{ route('admin.chat') }}">Messages</a> <br/>
+`<a href=" {{ route('admin.chat') }} ">Messages</a> <br/>`
 
 - For user chat, add the following code to a view that appears on all pages (e.g., footer):<br/>
   @auth <br/>
