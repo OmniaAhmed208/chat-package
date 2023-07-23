@@ -115,7 +115,14 @@ public function logout(Request $request) <br/>
 ## Usage
 
 - you can import admin chat by => @include('liveChat::pages.admin.chat') or route {{ route('admin.chat') }} in your view
-- User chat => @include('liveChat::pages.main.chat')
+- User chat => <br/>
+  @auth <br/>
+    @if (Auth::user()->role != 'admin') <br/>
+        @include('liveChat::pages.main.chat') <br/>
+    @endif <br/>
+  @else <br/>
+    @ include('liveChat::pages.main.chat')<br/>
+  @endauth
 
 ## Author
 
