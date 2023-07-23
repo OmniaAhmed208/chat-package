@@ -71,10 +71,10 @@
         
         <p>Change font size:</p>
         <div class="update-messengerFont d-flex">
-          <span data-font="14px">SM</span>
-          <span data-font="16px">MD</span>
-          <span data-font="18px">L</span>
-          <span data-font="20px">XL</span>
+          <span data-font="14px">Small</span>
+          <span data-font="16px">Medium</span>
+          <span data-font="18px">Large</span>
+          <span data-font="20px">XLarge</span>
         </div>
       </div>
       <div class="modal-footer justify-content-between">
