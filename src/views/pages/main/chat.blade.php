@@ -96,13 +96,7 @@
             <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
                 @auth
                     <div class="chatbox__button position-relative" id="chatbox__button">
-                        {{-- <img src="{{ asset('/liveChat/tools/chat/images/chat.png') }}" style="width:80px" alt=""> --}}
-                        @if ($admin && $admin->status == 'online')
-                            <i class="fa fa-comments"></i>
-                            <span class="position-absolute">live</span>
-                        @else
-                            <i class="fa fa-comments"></i>
-                        @endif
+                        <i class="fa fa-comments"></i>
                     </div>
                 @else
                     <a href="{{ route('login') }}">
@@ -156,6 +150,8 @@
 
         xhr.send(formData);
     });
+
+    let isStatusSpanCreated = false;
 
     function getData(){
         var xhr = new XMLHttpRequest();
