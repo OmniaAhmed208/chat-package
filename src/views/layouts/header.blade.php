@@ -20,6 +20,8 @@
   <link rel="stylesheet" href="{{ asset('/liveChat/tools/plugins/jqvmap/jqvmap.min.css') }}">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{ asset('/liveChat/tools/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
+   <!-- Toastr -->
+   <link rel="stylesheet" href="{{ asset('/tools/plugins/toastr/toastr.min.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('/liveChat/tools/plugins/summernote/summernote-bs4.min.css') }}">
   {{-- Admin Chat --}}

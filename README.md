@@ -137,17 +137,18 @@ public function logout(Request $request) <br/>
 ## Usage
 
 - To import admin chat, create a link anywhere in your view, for example: <br/>
-`<a href=" {{ route('admin.chat') }} ">Messages</a> <br/>`
+`<a href=" {{ route('admin.chat') }} ">Messages</a>` <br/>
 
 - For user chat, add the following code to a view that appears on all pages (e.g., footer):<br/>
+<pre>
   @auth <br/>
     @if (Auth::user()->role != 'admin') <br/>
         @include('liveChat::pages.main.chat') <br/>
     @endif <br/>
   @else <br/>
-    @ include('liveChat::pages.main.chat')<br/>
+    @include('liveChat::pages.main.chat')<br/>
   @endauth
-
+<pre>
 ## Author
 
 - [Omnia Ahmed](https://omnia-ahmed.onrender.com/index)
