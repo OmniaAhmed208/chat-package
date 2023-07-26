@@ -22,65 +22,99 @@ class AdminLiveChatController extends Controller
 
     public function viewChat($userId)
     {
-        $user = User::findOrFail($userId);
+        try{
+            $user = User::findOrFail($userId);
 
-        $userMsg = Messages::where('sender', $userId)
-        ->where('is_seen', 0);
+            $userMsg = Messages::where('sender', $userId)
+            ->where('is_seen', 0);
 
-        $userMsg->update(['is_seen' => 1]);
+            $userMsg->update(['is_seen' => 1]);
 
-        if(Auth::user()->role == 'admin'){
-            return view('liveChat::pages.admin.viewChat',compact('user'));
+            if(Auth::user()->role == 'admin'){
+                return view('liveChat::pages.admin.viewChat',compact('user'));
+            }
         }
+        catch(QueryException $exception){
+            if ($exception->getCode() === 1024) {
+                // $message = "Error 1024 occurred: " . $exception->getMessage();
+                $message = "Code 1024: Please wait...";
+                return redirect()->back()->with('success', $message);
+            } else {
+                $message = "An error occurred: " . $exception->getMessage();
+                return redirect()->back()->with('error', $message);
+            }
+        } 
     }
 
     public function storeChat(Request $request, $userId)
     {
-        $img = null;
+        try{
+            $img = null;
 
-        $data = User::find($userId);
+            $data = User::find($userId);
 
-        if ($data !== null) {
-            $id = $data->id;
+            if ($data !== null) {
+                $id = $data->id;
 
-            if ($request->hasFile('file')) {
-                $file = $request->file('file');
-                $ext = $file->getClientOriginalExtension();
-                $filename = time().'.'.$ext;
-                $img = $file->move('attachments/',$filename);
-            }
-    
-            if($img == null){
-                $request->validate([
-                    'msg' => 'required'
-                ]);
-            }
-    
-            $message = new Messages;
-            $message->msg = $request->input('msg');
-            $message->attachment = $img;
-            $message->sender = Auth::user()->id;
-            $message->receiver = $id;
-            $message->save();
-        } else {
-            return response()->json(['error' => 'An error occurred while saving the chat'], 500);
-        }
-
+                if ($request->hasFile('file')) {
+                    $file = $request->file('file');
+                    $ext = $file->getClientOriginalExtension();
+                    $filename = time().'.'.$ext;
+                    $img = $file->move('attachments/',$filename);
+                }
         
+                if($img == null){
+                    $request->validate([
+                        'msg' => 'required'
+                    ]);
+                }
+        
+                $message = new Messages;
+                $message->msg = $request->input('msg');
+                $message->attachment = $img;
+                $message->sender = Auth::user()->id;
+                $message->receiver = $id;
+                $message->save();
+            } else {
+                return response()->json(['error' => 'An error occurred while saving the chat'], 500);
+            }
+        }
+        catch(QueryException $exception){
+            if ($exception->getCode() === 1024) {
+                // $message = "Error 1024 occurred: " . $exception->getMessage();
+                $message = "Code 1024: Please wait...";
+                return redirect()->back()->with('success', $message);
+            } else {
+                $message = "An error occurred: " . $exception->getMessage();
+                return redirect()->back()->with('error', $message);
+            }
+        }     
     }
 
 
     public function getChat($userId)
     {
-        $data =  Messages::where('sender', $userId)
-        ->orWhere('receiver', $userId)
-        ->get();
+        try{
+            $data =  Messages::where('sender', $userId)
+            ->orWhere('receiver', $userId)
+            ->get();
 
-        $this->viewChat($userId); // to update unseen to 1 if i stop in userChat
+            $this->viewChat($userId); // to update unseen to 1 if i stop in userChat
 
-        if(Auth::user()->role == 'admin'){
-            return $data;
+            if(Auth::user()->role == 'admin'){
+                return $data;
+            }
         }
+        catch(QueryException $exception){
+            if ($exception->getCode() === 1024) {
+                // $message = "Error 1024 occurred: " . $exception->getMessage();
+                $message = "Code 1024: Please wait...";
+                return redirect()->back()->with('success', $message);
+            } else {
+                $message = "An error occurred: " . $exception->getMessage();
+                return redirect()->back()->with('error', $message);
+            }
+        }     
     }
 
     public function fetchNewMessages()
@@ -149,15 +183,27 @@ class AdminLiveChatController extends Controller
 
     public function updateStatus(Request $request,$id)
     {
-        $user = User::findOrFail($id);
+        try{
+            $user = User::findOrFail($id);
 
-        if($request->status == 'on'){
-            $user->update(['status' => 'online']);
-        }
-        else{
-            $user->update(['status' => 'offline']);
-        }
+            if($request->status == 'on'){
+                $user->update(['status' => 'online']);
+            }
+            else{
+                $user->update(['status' => 'offline']);
+            }
 
-        return redirect()->back();
+            return redirect()->back();
+        }
+        catch(QueryException $exception){
+            if ($exception->getCode() === 1024) {
+                // $message = "Error 1024 occurred: " . $exception->getMessage();
+                $message = "Code 1024: Please wait...";
+                return redirect()->back()->with('success', $message);
+            } else {
+                $message = "An error occurred: " . $exception->getMessage();
+                return redirect()->back()->with('error', $message);
+            }
+        } 
     }
 }   
