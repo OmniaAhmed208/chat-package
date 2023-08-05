@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ asset('/liveChat/tools/chat/css/typing.css') }}">
     <link rel="stylesheet" href="{{ asset('/liveChat/tools/chat/css/final.css') }}">
 </head>
-<body>
+<body class="chat">
     {{-- @yield('chat') --}}
     
     <div class="chatbox">
