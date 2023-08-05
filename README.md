@@ -63,7 +63,7 @@ composer require omnia/oalivechat
 use Illuminate\Http\Request; <br/>
 use Illuminate\Support\Facades\Auth; <br/>
 
-public function handle(Request $request, Closure $next): Response <br/>
+public function handle(Request $request, Closure $next) <br/>
 { <br/>
   if (Auth::check()) { <br/>
     view()->share('loggedInUser', Auth::user()); <br/>
@@ -87,7 +87,7 @@ protected $middlewareGroups = [ <br/>
 use Illuminate\Http\Request; <br/>
 use Illuminate\Support\Facades\Auth; <br/>
 
-public function handle(Request $request, Closure $next): Response <br/>
+public function handle(Request $request, Closure $next) <br/>
 { <br/>
   if (Auth::check() && Auth::user()->role_for_messages === 'admin') { <br/>
     return $next($request); <br/>

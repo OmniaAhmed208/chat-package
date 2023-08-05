@@ -34,7 +34,7 @@ class LiveChatController extends Controller
             ]);
         }
 
-        $adminId = User::where('role', 'admin')->first();
+        $adminId = User::where('role_for_messages', 'admin')->first();
 
         $message = new Messages;
         $message->msg = $request->msg;
@@ -65,7 +65,7 @@ class LiveChatController extends Controller
             return $message;
         });
 
-        $status = User::where('role', 'admin')->first()->status;
+        $status = User::where('role_for_messages', 'admin')->first()->status_for_messages;
 
         return response()->json([
             'data' => $data,

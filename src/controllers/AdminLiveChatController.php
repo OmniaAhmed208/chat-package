@@ -30,7 +30,7 @@ class AdminLiveChatController extends Controller
 
             $userMsg->update(['is_seen' => 1]);
 
-            if(Auth::user()->role == 'admin'){
+            if(Auth::user()->role_for_messages == 'admin'){
                 return view('liveChat::pages.admin.viewChat',compact('user'));
             }
         }
@@ -101,7 +101,7 @@ class AdminLiveChatController extends Controller
 
             $this->viewChat($userId); // to update unseen to 1 if i stop in userChat
 
-            if(Auth::user()->role == 'admin'){
+            if(Auth::user()->role_for_messages == 'admin'){
                 return $data;
             }
         }
@@ -160,7 +160,7 @@ class AdminLiveChatController extends Controller
             ->orderByRaw('(SELECT MAX(created_at) FROM messages WHERE sender = users.id OR receiver = users.id) DESC')
             ->get();
             
-            if(Auth::user()->role == 'admin'){
+            if(Auth::user()->role_for_messages == 'admin'){
                 return response()->json([
                     'users' => $users,
                     'unSeenUsersCount' => $unSeenUsersCount,
@@ -186,7 +186,7 @@ class AdminLiveChatController extends Controller
         try{
             $user = User::findOrFail($id);
 
-            if($request->status == 'on'){
+            if($request->status_for_messages == 'on'){
                 $user->update(['status' => 'online']);
             }
             else{
