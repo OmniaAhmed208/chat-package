@@ -141,13 +141,20 @@ public function logout(Request $request) <br/>
 
 - For user chat, add the following code to a view that appears on all pages (e.g., footer):<br/>
 
+@php<br/>
+    $websiteName = "your website name";<br/>
+    $websiteColor = "your color";<br/>
+@endphp<br/>
+
 @auth <br/>
   @if (Auth::user()->role != 'admin') <br/>
-      @include('liveChat::pages.main.chat') <br/>
+      @include('liveChat::pages.main.chat', ['websiteName' => $websiteName], ['chatColor' => $websiteColor]) <br/>
   @endif <br/>
 @else <br/>
-  @include('liveChat::pages.main.chat')<br/>
+  @include('liveChat::pages.main.chat', ['websiteName' => $websiteName], ['chatColor' => $websiteColor])<br/>
 @endauth
+
+- if you have static design you may put $websiteName and $websiteColor any value or empty (e.g., "") but not remove them
 
 ## Author
 

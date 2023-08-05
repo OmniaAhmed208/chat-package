@@ -115,6 +115,22 @@
     
     @auth
     <script>
+        // chat style
+        let websiteName = `<?php echo $websiteName; ?>`;
+        let chatColor = `<?php echo $chatColor; ?>`;
+
+        let comp_name = document.getElementById('comp_name');
+        if(websiteName != '')
+        {
+            comp_name.innerHTML = websiteName;
+        }
+        document.querySelector('.chatbox__button i').style.color = chatColor;
+        document.querySelector('.chatbox__header').style.background = chatColor;
+        document.querySelector('.chatbox__footer').style.background = chatColor;
+        // document.querySelector('.messages__item--operator').style.background = chatColor;
+    </script>
+    
+    <script>
     
     var sendBtn = document.getElementById('send');
 
@@ -174,17 +190,17 @@
 
                     if (message.sender === '{{ Auth::user()->id }}') {
                         if(message.msg != null){
-                            html += '<div class="messages__item messages__item--operator">' + message.msg + '</div>';
+                            html += '<div class="messages__item messages__item--operator" style="background:'+chatColor+'">' + message.msg + '</div>';
                         }
                         if (message.attachment != null) {
                             if (isImage(message.attachment)) {
-                                html += `<div class="messages__item messages__item--operator">
+                                html += `<div class="messages__item messages__item--operator" style="background:${chatColor}">
                                             <a href="${finalUrl}" target="_blank">
                                                 <img src="{{ asset('${message.attachment}') }}" class="attachment_image" alt="image">
                                             </a>
                                         </div>`;
                             } else {
-                                html += `<div class="messages__item messages__item--operator">
+                                html += `<div class="messages__item messages__item--operator" style="background:'+chatColor+'">
                                             <a href="${message.attachment}" class="text-white" download>${message.attachment}</a>
                                         </div>`;
                             }
