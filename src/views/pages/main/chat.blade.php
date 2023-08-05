@@ -98,7 +98,7 @@
                     <a href="{{ route('login') }}">
                         <div class="chatbox__button">
                             @if ($admin && $admin->status_for_messages == 'online')
-                                <i class="fa fa-comments"></i>
+                                <i class="fa fa-comments" ></i>
                                 <span class="position-absolute">live</span>
                             @else
                                 <i class="fa fa-comments"></i>
@@ -114,6 +114,7 @@
     <script src="{{ asset('/liveChat/tools/chat/js/appChat.js') }}"></script>
     
     @auth
+    <p>gfhf.{{ $websiteName }}</p>
     <script>
         // chat style
         let websiteName = `<?php echo $websiteName; ?>`;
@@ -124,10 +125,10 @@
         {
             comp_name.innerHTML = websiteName;
         }
-        document.querySelector('.chatbox__button i').style.color = chatColor;
-        document.querySelector('.chatbox__header').style.background = chatColor;
-        document.querySelector('.chatbox__footer').style.background = chatColor;
-        // document.querySelector('.messages__item--operator').style.background = chatColor;
+        document.getElementByClassName('chatbox__button i').style.color = chatColor;
+        document.getElementByClassName('chatbox__header').style.background = chatColor;
+        document.getElementByClassName('chatbox__footer').style.background = chatColor;
+        // document.getElementByClassName('.messages__item--operator').style.background = chatColor;
     </script>
     
     <script>
