@@ -125,9 +125,9 @@
         {
             comp_name.innerHTML = websiteName;
         }
-        document.getElementByClassName('chatbox__button i').style.color = chatColor;
-        document.getElementByClassName('chatbox__header').style.background = chatColor;
-        document.getElementByClassName('chatbox__footer').style.background = chatColor;
+        document.getElementsByClassName('chatbox__button i').style.color = chatColor;
+        document.getElementsByClassName('chatbox__header').style.background = chatColor;
+        document.getElementsByClassName('chatbox__footer').style.background = chatColor;
         // document.getElementByClassName('.messages__item--operator').style.background = chatColor;
     </script>
     
