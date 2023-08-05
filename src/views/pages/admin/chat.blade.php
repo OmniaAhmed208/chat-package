@@ -17,15 +17,7 @@
         <div class="chatbox__messages overflow-hidden" id="msgContainer">
             <div>
               <div class="row">
-                <div class="col-6">
-                  {{-- @if(auth()->check())
-                      <p>Welcome, {{ auth()->user()->name }}</p>
-                    @else
-                      <p>not logged in</p>
-                  @endauth --}}
-
-                  {{-- @dd(Auth::user()) --}}
-                </div>
+                <div class="col-6"></div>
                 <div class="col-6">
                   <img src="{{ asset('/liveChat/tools/chat/images/chatPage.png') }}" class="img-fluid" alt="">
                 </div>

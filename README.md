@@ -57,7 +57,7 @@ composer require omnia/oalivechat
 
 ### 5- Middleware for authentication admin chat
 
-- First, make sure to check the admin in the database and set its role to 'admin', not 'user'.
+- First, make sure to check the admin in the database and set its role_for_messages to 'admin', not 'user'.
 - Create a middleware for checking the admin role: php artisan make:middleware CheckAdminRole 
 - Add the following code to the handle method inside the middleware: <br/>
 use Illuminate\Http\Request; <br/>

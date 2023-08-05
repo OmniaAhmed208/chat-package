@@ -127,7 +127,7 @@ class AdminLiveChatController extends Controller
             // for navbar blade
             $unSeenUsersCount = DB::table('messages')
             ->join('users', 'users.id', '=', 'messages.sender')
-            ->where('users.role', '=', 'user')
+            ->where('users.role_for_messages', '=', 'user')
             ->where('is_seen', 0)
             ->distinct('sender')
             ->count('sender');
@@ -140,7 +140,7 @@ class AdminLiveChatController extends Controller
                         SELECT MAX(id) FROM messages WHERE sender = users.id
                     )'); // to get last message for this user and not repeat him
             })
-            ->where('users.role', '=', 'user')
+            ->where('users.role_for_messages', '=', 'user')
             ->where('messages.is_seen', '=', 0)
             ->orderBy('messages.created_at', 'desc')
             ->distinct('')
@@ -150,7 +150,7 @@ class AdminLiveChatController extends Controller
 
             // for sidebar
             $usersWithUnseenMessages = DB::table('users')
-            ->where('role', 'user')
+            ->where('role_for_messages', 'user')
             ->join('messages', function ($join) {
                 $join->on('users.id', '=', 'messages.sender')
                     ->orWhere('users.id', '=', 'messages.receiver');
@@ -187,10 +187,10 @@ class AdminLiveChatController extends Controller
             $user = User::findOrFail($id);
 
             if($request->status_for_messages == 'on'){
-                $user->update(['status' => 'online']);
+                $user->update(['status_for_messages' => 'online']);
             }
             else{
-                $user->update(['status' => 'offline']);
+                $user->update(['status_for_messages' => 'offline']);
             }
 
             return redirect()->back();
