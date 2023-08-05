@@ -15,7 +15,7 @@
         <img src="{{ asset('liveChat/tools/chat/logo/admin.png') }}" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">Alexander Pierce</a>
+        <a href="#" class="d-block">{{ Auth::user()->name }}</a>
       </div>
       <i class="nav-icon fas fa-cog text-white ml-auto pr-2" style="cursor: pointer" data-toggle="modal" data-target="#settings-chat"></i>
     </div>
