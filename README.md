@@ -67,7 +67,7 @@ public function handle(Request $request, Closure $next): Response <br/>
 { <br/>
   if (Auth::check()) { <br/>
     view()->share('loggedInUser', Auth::user()); <br/>
-    view()->share('adminRole', Auth::user()->role === 'admin'); <br/>
+    view()->share('adminRole', Auth::user()->role_for_messages === 'admin'); <br/>
   } <br/>
 
   return $next($request); <br/>
@@ -89,7 +89,7 @@ use Illuminate\Support\Facades\Auth; <br/>
 
 public function handle(Request $request, Closure $next): Response <br/>
 { <br/>
-  if (Auth::check() && Auth::user()->role === 'admin') { <br/>
+  if (Auth::check() && Auth::user()->role_for_messages === 'admin') { <br/>
     return $next($request); <br/>
   } <br/>
 
@@ -113,7 +113,7 @@ use App\Models\User; <br/>
 
 public function authenticated(Request $request, $user) <br/>
 {<br/>
-    $user->status = 'online';<br/>
+    $user->status_for_messages = 'online';<br/>
     $user->save();<br/>
     return redirect()->intended($this->redirectPath());<br/>
 }<br/>
@@ -122,7 +122,7 @@ public function logout(Request $request) <br/>
   $user = Auth::user();<br/>
   if ($user) { <br/>
       $userModel = User::find($user->id);<br/>
-      $userModel->status = 'offline';<br/>
+      $userModel->status_for_messages = 'offline';<br/>
       $userModel->save();<br/>
   }<br/>
   Auth::logout();<br/>
@@ -147,7 +147,7 @@ public function logout(Request $request) <br/>
 @endphp<br/>
 
 @auth <br/>
-  @if (Auth::user()->role != 'admin') <br/>
+  @if (Auth::user()->role_for_messages != 'admin') <br/>
       @include('liveChat::pages.main.chat', ['websiteName' => $websiteName], ['chatColor' => $websiteColor]) <br/>
   @endif <br/>
 @else <br/>

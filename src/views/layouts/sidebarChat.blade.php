@@ -30,7 +30,7 @@
               @csrf
               @method('put')
               <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="customSwitch1"  name="status" {{ Auth::user()->status == 'online' ? 'checked' : '' }} onchange="this.form.submit()">
+                <input type="checkbox" class="custom-control-input" id="customSwitch1"  name="status" {{ Auth::user()->status_for_messages == 'online' ? 'checked' : '' }} onchange="this.form.submit()">
                 <label class="custom-control-label" for="customSwitch1">Status</label>
               </div>
             </form>

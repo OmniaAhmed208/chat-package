@@ -22,7 +22,7 @@
             @endauth
 
             @php
-                $admin = Omnia\Oalivechat\Models\User::where('role', 'admin')->first();
+                $admin = Omnia\Oalivechat\Models\User::where('role_for_messages', 'admin')->first();
             @endphp
 
             <div class="chatbox__header py-2">
@@ -97,7 +97,7 @@
                 @else
                     <a href="{{ route('login') }}">
                         <div class="chatbox__button">
-                            @if ($admin && $admin->status == 'online')
+                            @if ($admin && $admin->status_for_messages == 'online')
                                 <i class="fa fa-comments"></i>
                                 <span class="position-absolute">live</span>
                             @else

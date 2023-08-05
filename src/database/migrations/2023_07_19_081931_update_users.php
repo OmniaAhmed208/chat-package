@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('role')->default('user');
-            $table->string('status')->default('offline');
+            $table->string('role_for_messages')->default('user');
+            $table->string('status_for_messages')->default('offline');
         });
     }
 
