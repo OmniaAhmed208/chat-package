@@ -4,7 +4,7 @@
 <div class="content-wrapper">
   <div class="container">
 
-    <div class="chat mt-5 mb-0">
+    <div class="chat mt-5 mb-0 bg-white" style="border-radius: 30px">
         <div class="chatbox__header bg-info">
             <div class="chatbox__image--header">
                 <img src="{{ asset('liveChat/tools/chat/logo/user.png') }}" alt="image">

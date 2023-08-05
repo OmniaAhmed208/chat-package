@@ -1,7 +1,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-info elevation-4">
   <!-- Brand Logo -->
-  <a href="index3.html" class="brand-link bg-info">
+  <a href="#" class="brand-link bg-info">
     {{-- <img src="{{ asset('liveChat/tools/chat/logo/admin.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> --}}
     <i class="fa fa-comments px-3"></i>
     <span class="brand-text font-weight-light">Live Chat</span>

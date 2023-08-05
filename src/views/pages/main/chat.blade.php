@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ asset('/liveChat/tools/chat/css/typing.css') }}">
     <link rel="stylesheet" href="{{ asset('/liveChat/tools/chat/css/final.css') }}">
 </head>
-<body class="chat">
+<body class="liveChat">
     {{-- @yield('chat') --}}
     
     <div class="chatbox">
@@ -30,7 +30,7 @@
                     <img src="{{ asset('/liveChat/tools/chat/logo/admin.png') }}" class="img-fluid" alt="image">
                 </div>
                 <div class="chatbox__content--header pt-3">
-                    <h4 class="chatbox__heading--header">E-Volve</h4>
+                    <h4 class="chatbox__heading--header">Chat with admin</h4>
                 </div>
             </div>
             <div class="chatbox__messages" id="msgContainer">
