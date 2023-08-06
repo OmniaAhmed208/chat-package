@@ -17,8 +17,6 @@
     --primary: #581B98;
 }
 
-/* 300;0,400;0,600;1,300 */
-
 body.liveChat {
     font-family: 'Nunito', sans-serif;
     font-weight: 400;
@@ -34,6 +32,7 @@ body.liveChat {
     border-top-right-radius: 20px;
     transition: all .5s ease-in-out;
     margin-bottom: 55px;
+    border-radius: 30px;
 }
 
 /* HEADER */
@@ -101,11 +100,9 @@ body.liveChat {
 
 /* FOOTER */
 .chatbox__footer {
-    /* display: flex; */
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    /* padding: 20px 45px; */
     padding: 0px 45px 20px;
     background: var(--secondaryGradient);
     box-shadow: var(--secondaryBoxShadow);
@@ -161,16 +158,6 @@ body.liveChat {
 
 .chatbox__button i{font-size: 45px;color: #581B98;}
 
-/* .chatbox__button span{
-    width: 13px;
-    height: 13px;
-    background: #00710f;
-    border-radius: 50%;
-    top: -6px;
-    right: -5px;
-    position: absolute;
-} */
-
 .chatbox__button span
 {
     background: #ffb701;
@@ -184,7 +171,6 @@ body.liveChat {
     font-weight: bold;
     transform: scale(1);
     filter: drop-shadow(1px 2px 3px #bc78ff);
-    /* box-shadow: 1px 1px 1px #751acf; */
     animation: liveChat 3s infinite ease-in-out;
 }
 

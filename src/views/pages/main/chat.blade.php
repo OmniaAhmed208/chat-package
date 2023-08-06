@@ -30,7 +30,7 @@
                     <img src="{{ asset('/liveChat/tools/chat/logo/admin.png') }}" class="img-fluid" alt="image">
                 </div>
                 <div class="chatbox__content--header pt-3">
-                    <h4 class="chatbox__heading--header">Chat with admin</h4>
+                    <h4 class="chatbox__heading--header" id="comp_name">Chat with admin</h4>
                 </div>
             </div>
             <div class="chatbox__messages" id="msgContainer">
@@ -74,9 +74,9 @@
             </div>
             <form method="POST" id="chat-form" enctype="multipart/form-data">
                 @csrf
-                <div class="chatbox__footer" style="flex-direction: column">
+                <div class="chatbox__footer" style="flex-direction: column" id="chatbox__footer">
                     <div class="content text-white d-flex align-items-center"></div><br>
-                    <div class="chatbox__footer p-0 m-0 bg-transparent shadow-none d-flex">
+                    <div class="chatbox__footer p-0 m-0 shadow-none d-flex" style="background: transparent">
                         <div class="file position-absolute">
                             <input type="file" class="position-absolute p-0 opacity-0" style="opacity:0" name="file" accept="image/*, .pdf, .doc, .txt" onchange="getImagePreview(event)">
                             <i class="fa-solid fa-paperclip px-2"></i>
@@ -125,14 +125,13 @@
         {
             comp_name.innerHTML = websiteName;
         }
-        document.getElementsByClassName('chatbox__button i').style.color = chatColor;
-        document.getElementsByClassName('chatbox__header').style.background = chatColor;
-        document.getElementsByClassName('chatbox__footer').style.background = chatColor;
+        document.querySelector('#chatbox__button i').style.color = chatColor;
+        document.querySelector('.chatbox__header').style.background = chatColor;
+        document.querySelector('#chatbox__footer').style.background = chatColor;
         // document.getElementByClassName('.messages__item--operator').style.background = chatColor;
     </script>
-    
+
     <script>
-    
     var sendBtn = document.getElementById('send');
 
     sendBtn.addEventListener('click', function(e) {

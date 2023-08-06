@@ -31,7 +31,6 @@
     background: var(--headerGradient);
 }
 
-.chatbox__footer {
+#chatbox__footer {
     background: var(--footerGradient);
 }
-
