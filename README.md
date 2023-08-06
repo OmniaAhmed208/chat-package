@@ -139,6 +139,16 @@ public function logout(Request $request) <br/>
 - To import admin chat, create a link anywhere in your view, for example: <br/>
 `<a href=" {{ route('admin.chat') }} ">Messages</a>` <br/>
 
+- if you want the counter of messages => put this code on your view
+and only enter your id name When calling the function which you want the count appeares inside it.<br/>
+`<script src="{{ asset('/liveChat/tools/chat/js/msg_counter.js') }}"></script>` <br/>
+`<script>`<br/>
+    window.onload = function() { <br/>
+      var routeUrl = "{{ route('fetchNewMessages') }}"; <br/>
+      fetchNewMessages(routeUrl,'id name'); <br/>
+    }; <br/>
+`</script> `
+
 - For user chat, add the following code to a view that appears on all pages (e.g., footer):<br/>
 
 @php<br/>

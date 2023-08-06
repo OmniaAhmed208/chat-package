@@ -89,7 +89,7 @@
         </div>
 
         @if (Route::has('login'))
-            <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
+            <div class="">
                 @auth
                     <div class="chatbox__button position-relative" id="chatbox__button">
                         <i class="fa fa-comments"></i>

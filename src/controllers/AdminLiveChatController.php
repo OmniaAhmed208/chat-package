@@ -186,7 +186,7 @@ class AdminLiveChatController extends Controller
         try{
             $user = User::findOrFail($id);
 
-            if($request->status_for_messages == 'on'){
+            if($request->status == 'on'){
                 $user->update(['status_for_messages' => 'online']);
             }
             else{
