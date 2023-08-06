@@ -15,7 +15,7 @@
         <img src="{{ asset('liveChat/tools/chat/logo/admin.png') }}" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+        <a href="{{ route('admin.index') }}" class="d-block">{{ Auth::user()->name }}</a>
       </div>
       <i class="nav-icon fas fa-cog text-white ml-auto pr-2" style="cursor: pointer" data-toggle="modal" data-target="#settings-chat"></i>
     </div>
@@ -41,7 +41,7 @@
           <a href="{{ route('admin.index') }}" class="nav-link active">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
-              Dashboard
+              Admin dashboard
             </p>
           </a>
         </li>
