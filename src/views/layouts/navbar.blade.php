@@ -60,21 +60,24 @@
                 var url = "{{ route('viewChat', ['id' => '__id__']) }}"; 
                 var finalUrl = url.replace('__id__', userId);
 
-                  var html = `
-                      <a href="${finalUrl}" class="dropdown-item">
-                        <div class="media">
-                          <img src="{{ asset('liveChat/tools/chat/logo/user.png') }}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-                          <div class="media-body">
-                            <h3 class="dropdown-item-title">
-                              ${user.name}
-                            </h3>
-                            <p class="text-sm" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;width:150px">${user.msg}</p>
-                            <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i>${user.created_at}</p>
-                          </div>
-                        </div>
-                      </a>
-                      <div class="dropdown-divider"></div>
-                  `;
+                var html = `
+                  <a href="${finalUrl}" class="dropdown-item">
+                    <div class="media">
+                      <img src="{{ asset('liveChat/tools/chat/logo/user.png') }}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                      <div class="media-body">
+                        <h3 class="dropdown-item-title">
+                          ${user.name}
+                        </h3>
+                        ${user.msg ? `
+                        <p class="text-sm" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 150px">
+                          ${user.msg}
+                        </p>` : ''}
+                        <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i>${user.created_at}</p>
+                      </div>
+                    </div>
+                  </a>
+                  <div class="dropdown-divider"></div>
+                `;
 
                   latestSendersContainer.innerHTML += html;
               });
