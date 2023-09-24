@@ -1,10 +1,10 @@
 @extends('liveChat::layouts.layoutChat')
 
 @section('content')
-<div class="content-wrapper">
+<div class="content-wrapper pt-5">
   <div class="container">
 
-    <div class="chat mt-5 mb-0 bg-white shadow" style="border-radius: 30px">
+    <div class="chat mb-0 bg-white shadow" style="border-radius: 30px">
         <div class="chatbox__header bg-info">
             <div class="chatbox__image--header">
                 <img src="{{ asset('liveChat/tools/chat/logo/user.png') }}" alt="image">

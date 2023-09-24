@@ -16,7 +16,7 @@ Route::group(['middleware' => 'web'], function () {
 
 Route::group(['middleware' => 'web'], function () 
 {
-    Route::get('chat', [AdminLiveChatController::class, 'chat'])->name('admin.chat')->middleware('admin');
+    Route::get('chat', [AdminLiveChatController::class, 'chat'])->name('admin.chat')->middleware('adminMessages');
     
     Route::post('storeChat/{userId}', [AdminLiveChatController::class, 'storeChat'])->name('storeChat');
 

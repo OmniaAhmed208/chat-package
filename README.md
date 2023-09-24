@@ -83,13 +83,14 @@ php artisan make:middleware CheckAdminRole
 ```php
 use Illuminate\Http\Request; 
 use Illuminate\Support\Facades\Auth; 
-
+```
+```php
 public function handle(Request $request, Closure $next) 
 { 
   if (Auth::check()) { 
     view()->share('loggedInUser', Auth::user()); 
     view()->share('adminRole', Auth::user()->role_for_messages === 'admin'); 
-  } <br/>
+  } 
 
   return $next($request);
 }
@@ -105,16 +106,17 @@ protected $middlewareGroups = [
 ];
 ```
 
-- You should also have an Admin middleware. Create it using: 
+- You should also have an AdminMessages middleware. Create it using: 
 ```php
-php artisan make:middleware Admin
+php artisan make:middleware AdminMessages
 ```
 
 - Add the following code to the handle method inside the middleware:
 ```php
 use Illuminate\Http\Request; 
 use Illuminate\Support\Facades\Auth; 
-
+```
+```php
 public function handle(Request $request, Closure $next) 
 { 
   if (Auth::check() && Auth::user()->role_for_messages === 'admin') { 
@@ -129,7 +131,7 @@ public function handle(Request $request, Closure $next)
 ```php
 protected $middlewareAliases = [ 
   // ... 
-  'admin' => \App\Http\Middleware\Admin::class, 
+  'adminMessages' => \App\Http\Middleware\AdminMessages::class, 
   'adminRole' => \App\Http\Middleware\CheckAdminRole::class, 
 ]; 
 ```
@@ -140,7 +142,8 @@ if you want this step: you should have laravel Authentication to get loginContro
 use Illuminate\Http\Request; 
 use Illuminate\Support\Facades\Auth; 
 use App\Models\User; 
-
+```
+```php
 public function authenticated(Request $request, $user) 
 {
     $user->status_for_messages = 'online';
@@ -179,7 +182,7 @@ and only enter your id name When calling the function which you want the count a
 <script>
     window.onload = function() { 
       var routeUrl = "{{ route('fetchNewMessages') }}"; 
-      fetchNewMessages(routeUrl,'id name'); 
+      fetchNewMessages(routeUrl,'id_name'); 
     }; 
 </script> 
 ```
