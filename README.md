@@ -43,7 +43,7 @@ composer require omnia/oalivechat
 ```
 ### 2- App Config
 
-- In the config/app.php file, add the following line to the 'providers' array: <br/>
+- In the `config/app.php` file, add the following line to the 'providers' array: <br/>
 ```php
 "providers": { 
   ... 
@@ -58,7 +58,7 @@ composer require omnia/oalivechat
 php artisan vendor:publish --tag=public --force 
 ```
 This will create a 'liveChat/tools' directory in the public directory. <br/>
-- If you want to change the user chat color and position, you can do so in public/liveChat/tools/chat/css/final.css.
+- If you want to change the user chat color and position, you can do so in `public/liveChat/tools/chat/css/final.css`
 
 ### 4- Migration to database
 
@@ -73,7 +73,7 @@ php artisan migrate --path=vendor/omnia/oalivechat/src/database/migrations
 
 ### 5- Middleware for authentication admin chat
 
-- First, make sure to check the admin in the database and set its role_for_messages to 'admin', not 'user'.
+- First, make sure to check the admin in the database and set its **role_for_messages** to 'admin', not 'user'.
 - Create a middleware for checking the admin role: 
 ```php
 php artisan make:middleware CheckAdminRole 
@@ -96,7 +96,7 @@ public function handle(Request $request, Closure $next)
 }
 ```
 
-- Then, add the middleware in app/Http/Kernel.php:  
+- Then, add the middleware in `app/Http/Kernel.php`:  
 ```php
 protected $middlewareGroups = [ 
   'web' => [ 
@@ -127,7 +127,7 @@ public function handle(Request $request, Closure $next)
 }
 ```
 
-- add the middleware aliases in app/Http/Kernel.php: 
+- add the middleware aliases in `app/Http/Kernel.php`: 
 ```php
 protected $middlewareAliases = [ 
   // ... 
@@ -166,7 +166,7 @@ public function logout(Request $request)
 
 ## Note
 
-- You must have a directory for the admin dashboard (any route) with the name 'admin.index'.
+- You must have a directory for the admin dashboard (any route) with the name `admin.index`.
 
 ## Usage
 
@@ -203,7 +203,7 @@ and only enter your id name When calling the function which you want the count a
 @endauth
 ```
 
-- if you have static design you may put $websiteName and $websiteColor any value or empty (e.g., "") but not remove them from the previous code.
+- if you have static design you may put `$websiteName` and `$websiteColor` any value or empty (e.g., "") but not remove them from the previous code.
 
 ## Author
 
