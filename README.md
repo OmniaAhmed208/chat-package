@@ -31,9 +31,9 @@ Laravel's #1 one-to-one chatting system package between admin and user, helps yo
 ### 1- Installation 
 
 Run the following command to install the package:<br/>
-
+```php
 composer require omnia/oalivechat
-
+```
 ### 2- App Config
 
 - In the config/app.php file, add the following line to the 'providers' array: <br/>
