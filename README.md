@@ -37,98 +37,121 @@ composer require omnia/oalivechat
 ### 2- App Config
 
 - In the config/app.php file, add the following line to the 'providers' array: <br/>
-
-"providers": { <br/>
-  ... <br/>
-  Omnia\Oalivechat\LiveChatServiceProvider::class, <br/>
+```php
+"providers": { 
+  ... 
+  Omnia\Oalivechat\LiveChatServiceProvider::class, 
 }
-
+```
 ### 3- publish Assets, css and js
 
 - To publish the package's assets, CSS, and JS, run the following command:
-- php artisan vendor:publish --tag=public --force <br/>
- This will create a 'liveChat/tools' directory in the public directory. <br/>
+
+```php
+php artisan vendor:publish --tag=public --force 
+```
+This will create a 'liveChat/tools' directory in the public directory. <br/>
 - If you want to change the user chat color and position, you can do so in public/liveChat/tools/chat/css/final.css.
 
 ### 4- Migration to database
 
-- make migration for your database => php artisan migrate
-- make migration for package database => php artisan migrate --path=vendor/omnia/oalivechat/src/database/migrations
+- make migration for your database => 
+```php
+php artisan migrate
+```
+- make migration for package database => 
+```php
+php artisan migrate --path=vendor/omnia/oalivechat/src/database/migrations
+```
 
 ### 5- Middleware for authentication admin chat
 
 - First, make sure to check the admin in the database and set its role_for_messages to 'admin', not 'user'.
-- Create a middleware for checking the admin role: php artisan make:middleware CheckAdminRole 
-- Add the following code to the handle method inside the middleware: <br/>
-use Illuminate\Http\Request; <br/>
-use Illuminate\Support\Facades\Auth; <br/>
+- Create a middleware for checking the admin role: 
+```php
+php artisan make:middleware CheckAdminRole 
+```
 
-public function handle(Request $request, Closure $next) <br/>
-{ <br/>
-  if (Auth::check()) { <br/>
-    view()->share('loggedInUser', Auth::user()); <br/>
-    view()->share('adminRole', Auth::user()->role_for_messages === 'admin'); <br/>
+- Add the following code to the handle method inside the middleware: 
+```php
+use Illuminate\Http\Request; 
+use Illuminate\Support\Facades\Auth; 
+
+public function handle(Request $request, Closure $next) 
+{ 
+  if (Auth::check()) { 
+    view()->share('loggedInUser', Auth::user()); 
+    view()->share('adminRole', Auth::user()->role_for_messages === 'admin'); 
   } <br/>
 
-  return $next($request); <br/>
+  return $next($request);
 }
+```
 
-- Then, add the middleware in app/Http/Kernel.php:  <br/>
-protected $middlewareGroups = [ <br/>
-  'web' => [ <br/>
-    // ... <br/>
-    \App\Http\Middleware\CheckAdminRole::class, <br/>
-  ], <br/>
+- Then, add the middleware in app/Http/Kernel.php:  
+```php
+protected $middlewareGroups = [ 
+  'web' => [ 
+    // ... 
+    \App\Http\Middleware\CheckAdminRole::class, 
+  ], 
 ];
+```
 
-- You should also have an Admin middleware. Create it using: <br/>
- php artisan make:middleware Admin
-- Add the following code to the handle method inside the middleware:<br/>
-use Illuminate\Http\Request; <br/>
-use Illuminate\Support\Facades\Auth; <br/>
+- You should also have an Admin middleware. Create it using: 
+```php
+php artisan make:middleware Admin
+```
 
-public function handle(Request $request, Closure $next) <br/>
-{ <br/>
-  if (Auth::check() && Auth::user()->role_for_messages === 'admin') { <br/>
-    return $next($request); <br/>
-  } <br/>
+- Add the following code to the handle method inside the middleware:
+```php
+use Illuminate\Http\Request; 
+use Illuminate\Support\Facades\Auth; 
 
-  return redirect('/'); <br/>
+public function handle(Request $request, Closure $next) 
+{ 
+  if (Auth::check() && Auth::user()->role_for_messages === 'admin') { 
+    return $next($request); 
+  } 
+
+  return redirect('/'); 
 }
+```
 
-- add the middleware aliases in app/Http/Kernel.php: <br/>
-protected $middlewareAliases = [ <br/>
-  // ... <br/>
-  'admin' => \App\Http\Middleware\Admin::class, <br/>
-  'adminRole' => \App\Http\Middleware\CheckAdminRole::class, <br/>
+- add the middleware aliases in app/Http/Kernel.php: 
+```php
+protected $middlewareAliases = [ 
+  // ... 
+  'admin' => \App\Http\Middleware\Admin::class, 
+  'adminRole' => \App\Http\Middleware\CheckAdminRole::class, 
 ]; 
-
+```
 - Optionally, to show the admin's status in the user chat, make the following updates to the LoginController:
 if you want this step: you should have laravel Authentication to get loginController file.
+```php
+use Illuminate\Http\Request; 
+use Illuminate\Support\Facades\Auth; 
+use App\Models\User; 
 
-- code:<br/>
-use Illuminate\Http\Request; <br/>
-use Illuminate\Support\Facades\Auth; <br/>
-use App\Models\User; <br/>
-
-public function authenticated(Request $request, $user) <br/>
-{<br/>
-    $user->status_for_messages = 'online';<br/>
-    $user->save();<br/>
-    return redirect()->intended($this->redirectPath());<br/>
-}<br/>
-public function logout(Request $request) <br/>
-{<br/>
-  $user = Auth::user();<br/>
-  if ($user) { <br/>
-      $userModel = User::find($user->id);<br/>
-      $userModel->status_for_messages = 'offline';<br/>
-      $userModel->save();<br/>
-  }<br/>
-  Auth::logout();<br/>
-  // Additional logout logic... <br/>
-  return redirect('/'); <br/>
+public function authenticated(Request $request, $user) 
+{
+    $user->status_for_messages = 'online';
+    $user->save();
+    return redirect()->intended($this->redirectPath());
 }
+public function logout(Request $request) 
+{
+  $user = Auth::user();
+  if ($user) { 
+      $userModel = User::find($user->id);
+      $userModel->status_for_messages = 'offline';
+      $userModel->save();
+  }
+  Auth::logout();
+  // Additional logout logic... 
+  return redirect('/'); 
+}
+```
 
 ## Note
 
@@ -136,33 +159,38 @@ public function logout(Request $request) <br/>
 
 ## Usage
 
-- To import admin chat, create a link anywhere in your view, for example: <br/>
-`<a href=" {{ route('admin.chat') }} ">Messages</a>` <br/>
+- To import admin chat, create a link anywhere in your view, for example:
+```php
+`<a href=" {{ route('admin.chat') }} ">Messages</a>`
+```
 
 - if you want the counter of messages => put this code on your view
-and only enter your id name When calling the function which you want the count appeares inside it.<br/>
-`<script src="{{ asset('/liveChat/tools/chat/js/msg_counter.js') }}"></script>` <br/>
-`<script>`<br/>
-    window.onload = function() { <br/>
-      var routeUrl = "{{ route('fetchNewMessages') }}"; <br/>
-      fetchNewMessages(routeUrl,'id name'); <br/>
-    }; <br/>
-`</script> `
+and only enter your id name When calling the function which you want the count appeares inside it.
+```php
+<script src="{{ asset('/liveChat/tools/chat/js/msg_counter.js') }}"></script> 
+<script>
+    window.onload = function() { 
+      var routeUrl = "{{ route('fetchNewMessages') }}"; 
+      fetchNewMessages(routeUrl,'id name'); 
+    }; 
+</script> 
+```
 
 - For user chat, add the following code to a view that appears on all pages (e.g., footer):<br/>
+```php
+@php
+    $websiteName = "your website name";
+    $websiteColor = "your color";
+@endphp
 
-@php<br/>
-    $websiteName = "your website name";<br/>
-    $websiteColor = "your color";<br/>
-@endphp<br/>
-
-@auth <br/>
-  @if (Auth::user()->role_for_messages != 'admin') <br/>
-      @include('liveChat::pages.main.chat', ['websiteName' => $websiteName], ['chatColor' => $websiteColor]) <br/>
-  @endif <br/>
-@else <br/>
-  @include('liveChat::pages.main.chat', ['websiteName' => $websiteName], ['chatColor' => $websiteColor])<br/>
+@auth 
+  @if (Auth::user()->role_for_messages != 'admin') 
+      @include('liveChat::pages.main.chat', ['websiteName' => $websiteName], ['chatColor' => $websiteColor]) 
+  @endif 
+@else 
+  @include('liveChat::pages.main.chat', ['websiteName' => $websiteName], ['chatColor' => $websiteColor])
 @endauth
+```
 
 - if you have static design you may put $websiteName and $websiteColor any value or empty (e.g., "") but not remove them
 
