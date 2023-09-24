@@ -9,7 +9,14 @@
 
 ## Live Chat Laravel Package
 
-Laravel's #1 one-to-one chatting system package between admin and user, helps you add a complete real-time chatting system to your new/existing Laravel application with only one command.
+Laravel's one-to-one chatting system package between admin and user, helps you add a complete real-time chatting system to your new/existing Laravel application with some commands.
+
+<!-- ## Technologies
+
+- Laravel Framework [^9.0, ^10.0]
+- PHP 8.1 or higher
+- Database (eg: MySQL)
+- Web Server (eg: Apache) -->
 
 ## Features
 
@@ -18,9 +25,9 @@ Laravel's #1 one-to-one chatting system package between admin and user, helps yo
 - Upload attachments (Photo/File).
 - Responsive design with all devices.
 - Chat customization: chat color and font size.
-  with simple and wonderful UI design.
+  with a simple design.
 
-...and much more you have to discover it yourself.
+<!-- ...and much more you have to discover it yourself. -->
 
 ## Demo
 
@@ -55,11 +62,11 @@ This will create a 'liveChat/tools' directory in the public directory. <br/>
 
 ### 4- Migration to database
 
-- make migration for your database => 
+- make migration for your database
 ```php
 php artisan migrate
 ```
-- make migration for package database => 
+- make migration for package database
 ```php
 php artisan migrate --path=vendor/omnia/oalivechat/src/database/migrations
 ```
@@ -126,7 +133,8 @@ protected $middlewareAliases = [
   'adminRole' => \App\Http\Middleware\CheckAdminRole::class, 
 ]; 
 ```
-- Optionally, to show the admin's status in the user chat, make the following updates to the LoginController:
+
+- Optionally, to show the admin's status in the user chat, make the following updates to the LoginController: <br>
 if you want this step: you should have laravel Authentication to get loginController file.
 ```php
 use Illuminate\Http\Request; 
@@ -161,7 +169,7 @@ public function logout(Request $request)
 
 - To import admin chat, create a link anywhere in your view, for example:
 ```php
-`<a href=" {{ route('admin.chat') }} ">Messages</a>`
+<a href=" {{ route('admin.chat') }} ">Messages</a>
 ```
 
 - if you want the counter of messages => put this code on your view
@@ -192,7 +200,7 @@ and only enter your id name When calling the function which you want the count a
 @endauth
 ```
 
-- if you have static design you may put $websiteName and $websiteColor any value or empty (e.g., "") but not remove them
+- if you have static design you may put $websiteName and $websiteColor any value or empty (e.g., "") but not remove them from the previous code.
 
 ## Author
 
