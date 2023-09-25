@@ -1,5 +1,5 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-info elevation-4">
+<aside class="main-sidebar sidebar-dark-primary elevation-1">
   <!-- Brand Logo -->
   <a href="#" class="brand-link bg-info">
     {{-- <img src="{{ asset('liveChat/tools/chat/logo/admin.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> --}}
@@ -10,44 +10,32 @@
   <!-- Sidebar -->
   <div class="sidebar">
     <!-- Sidebar user panel (optional) -->
-    <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center">
-      <div class="image">
-        <img src="{{ asset('liveChat/tools/chat/logo/admin.png') }}" class="img-circle elevation-2" alt="User Image">
-      </div>
-      <div class="info">
-        <a href="{{ route('admin.index') }}" class="d-block">{{ Auth::user()->name }}</a>
-      </div>
-      <i class="nav-icon fas fa-cog text-white ml-auto pr-2" style="cursor: pointer" data-toggle="modal" data-target="#settings-chat"></i>
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center justify-content-between ">
+      <div class="d-flex align-items-center">
+        <div class="image">
+            <img src="{{ asset('liveChat/tools/chat/logo/admin.png') }}" class="img-circle elevation-2" alt="User Image">
+          </div>
+          <div class="info ml-1">
+            <a href="{{ route('admin.chat') }}" class="d-block">{{ Auth::user()->name }}</a>
+          </div>
+        </div>
+        <i class="nav-icon fas fa-cog text-white ml-auto pr-2" style="cursor: pointer" data-toggle="modal" data-target="#settings-chat"></i>
     </div>
 
     <!-- Sidebar Menu -->
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column nav-flat" data-widget="treeview" role="menu" data-accordion="false">
-        <li class="nav-item menu-open">
-          <a href="#" class="nav-link bg-transparent">
-
-            <form class="form-group" action="{{ route('updateStatus', Auth::user()->id) }}"  method="POST" id="status-form">
-              @csrf
-              @method('put')
-              <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="customSwitch1"  name="status" {{ Auth::user()->status_for_messages == 'online' ? 'checked' : '' }} onchange="this.form.submit()">
-                <label class="custom-control-label" for="customSwitch1">Status</label>
-              </div>
-            </form>
-          </a>
-        </li>
-
-        <li class="nav-item menu-open">
-          <a href="{{ route('admin.index') }}" class="nav-link active">
+        <li class="nav-item">
+          <a href="{{ route('admin.index') }}" class="nav-link py-3 active">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
-              Admin dashboard
+              Dashboard
             </p>
           </a>
         </li>
       </ul>
 
-      <ul class="nav nav-pills nav-sidebar flex-column nav-flat" data-widget="treeview" role="menu" data-accordion="false" id="userList"></ul>
+      <ul class="nav nav-pills nav-sidebar flex-column nav-flat mx-1" data-widget="treeview" role="menu" data-accordion="false" id="userList"></ul>
     </nav>
     <!-- /.sidebar-menu -->
   </div>
@@ -64,11 +52,21 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+
       <div class="modal-body">
+        <form class="form-group" action="{{ route('updateStatus', Auth::user()->id) }}"  method="POST" id="status-form">
+            @csrf
+            @method('put')
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="customSwitch1"  name="status" {{ Auth::user()->status_for_messages == 'online' ? 'checked' : '' }} onchange="this.form.submit()">
+              <label class="custom-control-label" for="customSwitch1">Status of admin connection</label>
+            </div>
+        </form>
+
         <p>Change default color:</p>
         {{-- <input type="color" id="colorPicker" class="form-control" value="#000000"> --}}
         <div class="colors d-flex flex-wrap mb-3"></div>
-        
+
         <p>Change font size:</p>
         <div class="update-messengerFont d-flex">
           <span data-font="14px">Small</span>
@@ -103,19 +101,19 @@
     xhr.onload = function() {
         if (xhr.status === 200) {
             var response = JSON.parse(xhr.responseText);
-            
+
             var users = response.users;
             var data = response.data;
             // console.log(data)
 
-            var userList = document.getElementById('userList'); 
+            var userList = document.getElementById('userList');
             userList.innerHTML = '';
 
             data.forEach(function(user) {
               var userId = user.id;
-              var url = "{{ route('viewChat', ['id' => '__id__']) }}"; 
+              var url = "{{ route('viewChat', ['id' => '__id__']) }}";
               var finalUrl = url.replace('__id__', userId);
-              
+
               if(userViewId == user.id)
               {
                 user.unseen_count = 0
