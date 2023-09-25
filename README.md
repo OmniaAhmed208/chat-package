@@ -27,7 +27,7 @@ Laravel's one-to-one chatting system package between admin and user, helps you a
 - Chat customization: chat color and font size.
   with a simple design.
 
-<!-- ...and much more you have to discover it yourself. -->
+...and much more you have to discover it yourself.
 
 ## Demo
 
@@ -43,7 +43,7 @@ composer require omnia/oalivechat
 ```
 ### 2- App Config
 
-- In the `config/app.php` file, add the following line to the 'providers' array: <br/>
+- In the `config/app.php` file, add the following line to the `providers` array: <br/>
 ```php
 "providers": { 
   ... 
@@ -57,7 +57,7 @@ composer require omnia/oalivechat
 ```php
 php artisan vendor:publish --tag=public --force 
 ```
-This will create a 'liveChat/tools' directory in the public directory. <br/>
+This will create a `liveChat/tools` directory in the public directory. <br/>
 - If you want to change the user chat color and position, you can do so in `public/liveChat/tools/chat/css/final.css`
 
 ### 4- Migration to database
@@ -73,7 +73,7 @@ php artisan migrate --path=vendor/omnia/oalivechat/src/database/migrations
 
 ### 5- Middleware for authentication admin chat
 
-- First, make sure to check the admin in the database and set its **role_for_messages** to 'admin', not 'user'.
+- **First**, make sure to check the admin in the database and set its **role_for_messages** to `admin`, not 'user'.
 - Create a middleware for checking the admin role: 
 ```php
 php artisan make:middleware CheckAdminRole 
@@ -106,7 +106,7 @@ protected $middlewareGroups = [
 ];
 ```
 
-- You should also have an AdminMessages middleware. Create it using: 
+- Create an AdminMessages middleware by this code: 
 ```php
 php artisan make:middleware AdminMessages
 ```
@@ -136,8 +136,8 @@ protected $middlewareAliases = [
 ]; 
 ```
 
-- Optionally, to show the admin's status in the user chat, make the following updates to the LoginController: <br>
-if you want this step: you should have laravel Authentication to get loginController file.
+- Optionally, to show the `admin's status` in the user chat, make the following updates to the `LoginController`: <br>
+if you want this step: you should have **laravel Authentication** to get loginController file.
 ```php
 use Illuminate\Http\Request; 
 use Illuminate\Support\Facades\Auth; 
