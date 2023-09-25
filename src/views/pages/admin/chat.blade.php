@@ -1,7 +1,7 @@
 @extends('liveChat::layouts.layoutChat')
 
 @section('content')
-<div class="content-wrapper pt-5">
+<div class="content-wrapper p-5">
   <div class="container">
 
     <div class="chat mb-0 bg-white shadow" style="border-radius: 30px">
@@ -13,13 +13,13 @@
                 <h4 class="chatbox__heading--header">Choose person to chat</h4>
             </div>
         </div>
-    
+
         <div class="chatbox__messages overflow-hidden" id="msgContainer">
             <div>
               <div class="row">
                 <div class="col-6"></div>
                 <div class="col-6">
-                  <img src="{{ asset('/liveChat/tools/chat/images/chatPage.png') }}" class="img-fluid" alt="">
+                  <img src="{{ asset('/liveChat/tools/chat/images/chatPage.png') }}" class="img-fluid" style="max-width: 80%;" alt="">
                 </div>
               </div>
             </div>
@@ -32,7 +32,7 @@
             </div>
         </form>
 
-    </div>      
+    </div>
 
   </div>
 </div>

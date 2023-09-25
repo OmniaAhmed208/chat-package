@@ -2,10 +2,10 @@
 
 @section('content')
 
-<div class="content-wrapper">
+<div class="content-wrapper p-5">
   <div class="container">
 
-    <div class="chat mt-5 mb-0 bg-white shadow" style="border-radius: 30px">
+    <div class="chat mb-0 bg-white shadow" style="border-radius: 30px">
         <div class="chatbox__header bg-info">
             <div class="chatbox__image--header">
                 <img src="{{ asset('liveChat/tools/chat/logo/user.png') }}" alt="image">
@@ -15,7 +15,7 @@
                 {{-- <p class="chatbox__description--header">There are many variations of passages of Lorem Ipsum available</p> --}}
             </div>
         </div>
-    
+
         <div class="chatbox__messages" id="msgContainer">
             <div style="word-break: break-word;">
                 @php
@@ -28,7 +28,7 @@
                             {{ $item->msg }}
                         </div>
                     @endif
-                    
+
                     @if ($item->receiver == $user->id)
                         <div class="messages__item messages__item--operator">
                             {{ $item->msg }}
@@ -54,7 +54,7 @@
             </div>
         </form>
 
-    </div>      
+    </div>
 
   </div>
 </div>
@@ -63,7 +63,7 @@
     var sendBtn = document.getElementById('send');
 
     sendBtn.addEventListener('click', function(e) {
-        
+
         e.preventDefault();
         var container = document.querySelector('.chatbox__footer .content');
         container.innerHTML = '';
@@ -78,14 +78,14 @@
             if (xhr.status === 200) {
                 var response = xhr.responseText;
                 getData();
-                form.reset(); 
+                form.reset();
             } else {
                 console.log('Error: ' + xhr.status);
             }
         };
 
         xhr.send(formData);
-        
+
     });
 
     function getData(){
@@ -104,7 +104,7 @@
 
                 messages.forEach(function(message) {
                     var messageId = message.id;
-                    var url = "{{ route('image', ['id' => '__id__']) }}"; 
+                    var url = "{{ route('image', ['id' => '__id__']) }}";
                     var finalUrl = url.replace('__id__', messageId);
 
                     var messageColor = getCookie('defaultColor');
@@ -176,7 +176,7 @@
         getData();
     }, 1000);
 
-    // show image after choose it 
+    // show image after choose it
     function getImagePreview(event){
         // console.log(event.target.files[0])
         if(isImage(event.target.files[0].name)){
@@ -191,14 +191,14 @@
             var fileName = event.target.files[0].name;
             var container = document.querySelector('.chatbox__footer .content');
             container.innerHTML = '';
-            var html = `<span style="margin: 0px -60px 10px;">${fileName} 
+            var html = `<span style="margin: 0px -60px 10px;">${fileName}
                             <i class="fa-solid fa-close px-2" onclick="closeFile()"></i>
                         </span>`;
             container.innerHTML += html;
         }
     }
 
-    // remove image selected from input 
+    // remove image selected from input
     function closeFile(){
         document.querySelector('.chatbox__footer .content').innerHTML = '';
         document.querySelector('.chatbox__footer .file input').value = '';
@@ -228,5 +228,5 @@
         toastr.error('{{ session('error') }}');
     </script>
 @endif
-    
+
 @endsection
