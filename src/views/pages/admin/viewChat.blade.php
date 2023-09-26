@@ -45,7 +45,7 @@
 
                 <div class="chatbox__footer p-0 m-0 bg-transparent shadow-none d-flex w-100">
                     <div class="file position-absolute">
-                        <input type="file" class="position-absolute p-0 opacity-0" name="file" accept="image/*, .pdf, .doc, .txt" onchange="getImagePreview(event)">
+                        <input type="file" class="position-absolute p-0 opacity-0" name="file" accept=".jpg, .jpeg, .png, .gif, .pdf, .doc, .txt" onchange="getImagePreview(event)">
                         <i class="fa-solid fa-paperclip px-2"></i>
                     </div>
                     <input type="text" placeholder="Write a message..." name="msg" id="msg">
