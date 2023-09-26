@@ -10,7 +10,7 @@
   <!-- Sidebar -->
   <div class="sidebar">
     <!-- Sidebar user panel (optional) -->
-    <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center justify-content-between ">
+    <div class="user-panel mt-3 mb-3 d-flex align-items-center justify-content-between border-0">
       <div class="d-flex align-items-center">
         <div class="image">
             <img src="{{ asset('liveChat/tools/chat/logo/admin.png') }}" class="img-circle elevation-2" alt="User Image">
@@ -26,7 +26,7 @@
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column nav-flat" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item">
-          <a href="{{ route('admin.index') }}" class="nav-link py-3 active">
+          <a href="{{ route('admin.index') }}" class="nav-link py-3 bg-info active">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard
